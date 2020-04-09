@@ -6,10 +6,11 @@
   // An input is not a number: Ignore/skip these as well, instead of attempting to call setTimeout with a non-number.
 
 let timer = process.argv.slice(2, process.argv.length)
+timer.sort((a, b) => a - b) 
 
-const hearDing = function(timer) {
+const hearDing = function(timer){
   for (let time of timer) { 
-    if (time > 0) {    
+    if (time <= 0 && !isNan(time)) {    
       timeInMS = time * 1000;
       setTimeout(() => {
         process.stdout.write('\x07')
